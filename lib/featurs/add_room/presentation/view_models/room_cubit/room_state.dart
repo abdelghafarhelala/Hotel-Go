@@ -10,3 +10,5 @@ class AppChangeRommsNumState extends RoomState {}
 class AppChangeAdultsNumState extends RoomState {}
 
 class AppChangeChildrenNumState extends RoomState {}
+
+class AppAddNewModelState extends RoomState {}

@@ -8,10 +8,14 @@ import 'package:hotelsco_task/featurs/add_room/presentation/view_models/room_cub
 class ButtonIconComponent extends StatelessWidget {
   final IconData icon;
   final String title;
+  final int index;
+  final int number;
   const ButtonIconComponent({
     super.key,
     required this.icon,
     required this.title,
+    required this.index,
+    required this.number,
   });
 
   @override
@@ -20,17 +24,17 @@ class ButtonIconComponent extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            addAndMinusNumbers(context);
+            addAndMinusNumbers(context, index);
           },
           child: Container(
             width: 43,
             padding: const EdgeInsets.all(3),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(17),
-                border: Border.all(color: AppColors.primaryColor, width: 1.5)),
+                border: Border.all(color: getIconButtonColor(), width: 1.5)),
             child: Icon(
               icon,
-              color: AppColors.primaryColor,
+              color: getIconButtonColor(),
               size: 30,
             ),
           ),
@@ -39,24 +43,52 @@ class ButtonIconComponent extends StatelessWidget {
     );
   }
 
-  void addAndMinusNumbers(BuildContext context) {
+  Color getIconButtonColor() {
+    return icon == Icons.add && title == AppStrings.adults && number < 6
+        ? AppColors.primaryColor
+        : icon == Icons.add && title == AppStrings.children && number < 4
+            ? AppColors.primaryColor
+            : icon == Icons.remove && title == AppStrings.adults && number > 0
+                ? AppColors.primaryColor
+                : icon == Icons.remove &&
+                        title == AppStrings.children &&
+                        number > 0
+                    ? AppColors.primaryColor
+                    : icon == Icons.remove &&
+                            title == AppStrings.romms &&
+                            number > 1
+                        ? AppColors.primaryColor
+                        : icon == Icons.add &&
+                                title == AppStrings.romms &&
+                                number < 6
+                            ? AppColors.primaryColor
+                            : AppColors.disableColor;
+  }
+
+  void addAndMinusNumbers(BuildContext context, int index) {
     if (icon == Icons.add) {
       if (title == AppStrings.romms) {
         context.read<RoomCubit>().changeRoomNumber(opretion: Opretion.plus);
       } else if (title == AppStrings.adults) {
-        context.read<RoomCubit>().changeAdultsNumber(opretion: Opretion.plus);
+        context
+            .read<RoomCubit>()
+            .changeAdultsNumber(opretion: Opretion.plus, index: index);
       } else if (title == AppStrings.children) {
-        context.read<RoomCubit>().changeChildrenNumber(opretion: Opretion.plus);
+        context
+            .read<RoomCubit>()
+            .changeChildrenNumber(opretion: Opretion.plus, index: index);
       }
     } else {
       if (title == AppStrings.romms) {
         context.read<RoomCubit>().changeRoomNumber(opretion: Opretion.minus);
       } else if (title == AppStrings.adults) {
-        context.read<RoomCubit>().changeAdultsNumber(opretion: Opretion.minus);
+        context
+            .read<RoomCubit>()
+            .changeAdultsNumber(opretion: Opretion.minus, index: index);
       } else if (title == AppStrings.children) {
         context
             .read<RoomCubit>()
-            .changeChildrenNumber(opretion: Opretion.minus);
+            .changeChildrenNumber(opretion: Opretion.minus, index: index);
       }
     }
   }

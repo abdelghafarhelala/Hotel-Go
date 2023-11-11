@@ -22,36 +22,44 @@ class AddRoomScreen extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColors.gryColor,
               borderRadius: BorderRadius.circular(15)),
-          child: Column(
-            children: [
-              const HeaderComponent(),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    NumberRoomsComponent(
-                      number: context.read<RoomCubit>().roomsNum,
-                      title: AppStrings.romms,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const RoomProperitesComponent(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const PetFriendlyComponent(),
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height / 6,
-                    ),
-                    const ApplyButtonComponent(),
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const HeaderComponent(),
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      NumberRoomsComponent(
+                        number: context.read<RoomCubit>().model!.length,
+                        title: AppStrings.romms,
+                        index: 1,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      for (int i = 0;
+                          i < context.read<RoomCubit>().model!.length;
+                          i++)
+                        RoomProperitesComponent(
+                          index: i,
+                        ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const PetFriendlyComponent(),
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height / 6,
+                      ),
+                      const ApplyButtonComponent(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

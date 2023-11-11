@@ -13,7 +13,7 @@ class RoomsDropdown extends StatefulWidget {
 }
 
 class RoomsDropdownState extends State<RoomsDropdown> {
-  String? selectedRooms;
+  Map<String, int>? selectedRooms = roomsApi[0];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class RoomsDropdownState extends State<RoomsDropdown> {
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(18),
           ),
-          child: DropdownButtonFormField(
+          child: DropdownButtonFormField<Map<String, int>>(
             style: const TextStyle(color: AppColors.primaryColor, fontSize: 18),
             dropdownColor: AppColors.whiteColor,
             iconEnabledColor: AppColors.primaryColor,
@@ -34,18 +34,20 @@ class RoomsDropdownState extends State<RoomsDropdown> {
               size: 25,
             ),
             value: selectedRooms,
-            onChanged: (String? value) {
+            onChanged: (Map<String, int>? value) {
               setState(() {
                 selectedRooms = value;
                 print(value);
               });
-              changeValuesOfRoomsAndAdultsAndChildren(value, context);
+              // changeValuesOfRoomsAndAdultsAndChildren(value, context);
+
+              context.read<RoomCubit>().roomIndex = roomsApi.indexOf(value!);
+              context.read<RoomCubit>().seclectedItem = value;
               setState(() {});
             },
             items: roomsApi.map((room) {
-              return DropdownMenuItem<String>(
-                value:
-                    '${room['room']} Room ${room['adults']} Adult Room ${room['childen']} Children',
+              return DropdownMenuItem<Map<String, int>>(
+                value: room,
                 child: Text(
                     '${room['room']} Room ${room['adults']} Adult Room ${room['childen']} Children'),
               );

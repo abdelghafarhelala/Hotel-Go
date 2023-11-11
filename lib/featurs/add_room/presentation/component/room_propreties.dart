@@ -7,8 +7,10 @@ import 'package:hotelsco_task/featurs/add_room/presentation/component/number_roo
 import 'package:hotelsco_task/featurs/add_room/presentation/view_models/room_cubit/room_cubit.dart';
 
 class RoomProperitesComponent extends StatelessWidget {
+  final int index;
   const RoomProperitesComponent({
     super.key,
+    required this.index,
   });
 
   @override
@@ -29,14 +31,18 @@ class RoomProperitesComponent extends StatelessWidget {
                 height: 20,
               ),
               NumberOfThingsComponent(
+                  index: index,
                   title: AppStrings.adults,
-                  number: context.read<RoomCubit>().adultsNum),
+                  number:
+                      context.read<RoomCubit>().model![index]['adults'] ?? 0),
               const SizedBox(
                 height: 20,
               ),
               NumberOfThingsComponent(
                   title: AppStrings.children,
-                  number: context.read<RoomCubit>().childrenNum),
+                  number:
+                      context.read<RoomCubit>().model![index]['children'] ?? 0,
+                  index: index),
               const SizedBox(
                 height: 20,
               ),

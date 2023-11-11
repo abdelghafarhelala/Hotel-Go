@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotelsco_task/core/utils/app_colors.dart';
+import 'package:hotelsco_task/featurs/add_room/presentation/view_models/room_cubit/room_cubit.dart';
 import 'package:hotelsco_task/featurs/add_room/presentation/views/add_room_screen.dart';
 import 'package:hotelsco_task/featurs/check_in/presentation/components/date_pickers_component.dart';
 import 'package:hotelsco_task/featurs/check_in/presentation/components/nationality_drop_down_component.dart';
@@ -15,55 +17,64 @@ class CheckInFormComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => showBottomSheet(context, const AddRoomScreen()),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Stack(
+    return BlocBuilder<RoomCubit, RoomState>(
+      builder: (context, state) {
+        return InkWell(
+          onTap: () {
+            context.read<RoomCubit>().addNewModel();
+            showBottomSheet(context, const AddRoomScreen());
+            print(context.read<RoomCubit>().model);
+          },
+          child: Stack(
+            alignment: Alignment.bottomCenter,
             children: [
-              Container(
-                height: MediaQuery.sizeOf(context).height / 2.37,
-                decoration: BoxDecoration(
-                    color: AppColors.buttonColor,
-                    borderRadius: BorderRadius.circular(20)),
+              Stack(
+                children: [
+                  Container(
+                    height: MediaQuery.sizeOf(context).height / 2.37,
+                    decoration: BoxDecoration(
+                        color: AppColors.buttonColor,
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(colors: [
+                          AppColors.primaryColor,
+                          AppColors.secoundaryColor
+                        ]),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Column(
+                      children: [
+                        WhiteContaianerWithRadiusComponent(
+                          child: SelcetCityTextFormFieldComponent(),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        WhiteContaianerWithRadiusComponent(
+                          child: DatePickersComponent(),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        NationalityDropdown(),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        RoomsDropdown(),
+                        // MyHomePage(),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    gradient: const LinearGradient(colors: [
-                      AppColors.primaryColor,
-                      AppColors.secoundaryColor
-                    ]),
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Column(
-                  children: [
-                    WhiteContaianerWithRadiusComponent(
-                      child: SelcetCityTextFormFieldComponent(),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    WhiteContaianerWithRadiusComponent(
-                      child: DatePickersComponent(),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    NationalityDropdown(),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    RoomsDropdown(),
-                  ],
-                ),
-              ),
+              const TextAndIConButtonComponent()
             ],
           ),
-          const TextAndIConButtonComponent()
-        ],
-      ),
+        );
+      },
     );
   }
 
