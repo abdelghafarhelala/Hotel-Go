@@ -49,7 +49,7 @@ class RoomsDropdownState extends State<RoomsDropdown> {
               return DropdownMenuItem<Map<String, int>>(
                 value: room,
                 child: Text(
-                    '${room['room']} Room ${room['adults']} Adult Room ${room['childen']} Children'),
+                    '${room['room']} Room ${room['adults']} Adult Room ${room['children']} Children'),
               );
             }).toList(),
             decoration: const InputDecoration(
