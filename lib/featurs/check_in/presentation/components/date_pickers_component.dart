@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelsco_task/core/resources/app_strings.dart';
 import 'package:hotelsco_task/core/utils/app_colors.dart';
+import 'package:hotelsco_task/featurs/check_in/presentation/components/dialog_body_component.dart';
 import 'package:intl/intl.dart';
 
 class DatePickersComponent extends StatefulWidget {
@@ -23,16 +24,7 @@ class DatePickersComponentState extends State<DatePickersComponent> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  AppStrings.selectDate,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ),
+              const DialogBodyComponent(),
               SizedBox(
                 height: MediaQuery.sizeOf(context).height / 2.8,
                 child: CalendarDatePicker(

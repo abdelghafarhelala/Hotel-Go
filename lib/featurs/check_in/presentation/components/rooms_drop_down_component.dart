@@ -9,10 +9,10 @@ class RoomsDropdown extends StatefulWidget {
   const RoomsDropdown({super.key});
 
   @override
-  _RoomsDropdownState createState() => _RoomsDropdownState();
+  RoomsDropdownState createState() => RoomsDropdownState();
 }
 
-class _RoomsDropdownState extends State<RoomsDropdown> {
+class RoomsDropdownState extends State<RoomsDropdown> {
   String? selectedRooms;
 
   @override

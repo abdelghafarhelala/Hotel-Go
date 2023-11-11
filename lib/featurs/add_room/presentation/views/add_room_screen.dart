@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotelsco_task/core/resources/app_strings.dart';
 import 'package:hotelsco_task/core/utils/app_colors.dart';
+import 'package:hotelsco_task/featurs/add_room/presentation/component/apply_button.dart';
 import 'package:hotelsco_task/featurs/add_room/presentation/component/header_component.dart';
 import 'package:hotelsco_task/featurs/add_room/presentation/component/number_rooms_component.dart';
 import 'package:hotelsco_task/featurs/add_room/presentation/component/pet_friendly_component.dart';
@@ -43,29 +44,10 @@ class AddRoomScreen extends StatelessWidget {
                       height: 10,
                     ),
                     const PetFriendlyComponent(),
-                    // const Spacer(),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height / 6,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MaterialButton(
-                        height: 50,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        minWidth: double.infinity,
-                        color: AppColors.primaryColor,
-                        onPressed: () {},
-                        child: const Text(
-                          'Apply',
-                          style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
+                    const ApplyButtonComponent(),
                   ],
                 ),
               ),

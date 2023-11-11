@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelsco_task/core/resources/app_strings.dart';
 import 'package:hotelsco_task/core/utils/app_colors.dart';
 
 List<String> nationalities = [
@@ -50,7 +51,7 @@ class _NationalityDropdownState extends State<NationalityDropdown> {
         }).toList(),
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(15),
-          hintText: 'Select Nationality',
+          hintText: AppStrings.selectNationality,
           hintStyle: TextStyle(color: AppColors.primaryColor, fontSize: 18),
           border: InputBorder.none,
         ),

@@ -13,6 +13,9 @@ class AppStrings {
   static const String year = 'year';
   static const String roomsAndGuests = "Rooms and Guests";
   static const String romm1 = 'ROOM 1';
+  static const String apply = 'Apply';
+  static const String selectNationality = 'Select Nationality';
+  static const String hotelsSearch = 'Hotels Search';
   static const String petFriendly = 'Pet-friendly';
   static const String onlyShowStaysThatAllowPets =
       'Only show stays that allow pets';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelsco_task/core/resources/app_strings.dart';
 import 'package:hotelsco_task/core/utils/app_colors.dart';
 import 'package:hotelsco_task/featurs/check_in/presentation/components/hotel_search_title_shape.dart';
 
@@ -24,7 +25,7 @@ class HotelSearchTitleComponent extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 10, top: 17, bottom: 20),
             child: Text(
-              'Hotels Search',
+              AppStrings.hotelsSearch,
               style: TextStyle(
                   color: AppColors.whiteColor,
                   fontWeight: FontWeight.w700,
